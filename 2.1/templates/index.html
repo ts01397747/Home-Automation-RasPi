@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+   <head>
+      <title>{{ title }}</title>
+      <meta charset="utf-8">
+      <style>
+           * {
+            box-sizing: border-box;
+            }
+            body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgb(77, 77, 77);
+            }
+            header {
+            background-color: #777;
+            padding: 1px;
+            text-align: center;
+            font-size: 12px;
+            color: white;
+            }
+            nav {
+            float: left;
+            width: 16%;
+            height: 800px; 
+            background: rgb(83, 83, 83);
+            padding: 0px 5px;
+            }
+            nav ul {
+            list-style-type: none;
+            padding: 0;
+            }
+            charts2 {
+            float: left;
+            padding: 0px;
+            width: 21%;
+            background-color: rgb(77, 77, 77);
+            }
+            charts3 {
+            float: left;
+            padding: 0px;
+            width: 21%;
+            background-color: rgb(77, 77, 77);
+            }
+            charts4 {
+            float: left;
+            padding: 0px;
+            width: 21%;
+            background-color: rgb(77, 77, 77);
+            }
+            section::after {
+            content: "";
+            display: table;
+            clear: both;
+            }
+            footer {
+            background-color: #777;
+            padding: 3px;
+            text-align: center;
+            color: white;
+            }
+            /* Responsive layout - makes the columns/boxes stack on top of each other instead of next to each other, on small screens */
+            @media (max-width: 400px) {
+            nav, body {
+               width: auto;
+               height: auto;
+            }
+            }
+      </style>
+   </head>
+
+   <body>
+      <header>
+         <h2>Remote Relay Control Module with Siri Integration 3.0</h2>
+      </header>
+      <section>
+         <nav>
+           <ul>
+             <pre>
+192.168.50.4
+
+GPIO#05) <font class="GPIO-button" id="1">Relay 1</font>
+GPIO#06) <font class="GPIO-button" id="2">Relay 2</font>
+GPIO#13) <font class="GPIO-button" id="3">Relay 3</font>
+GPIO#16) <font class="GPIO-button" id="4">Relay 4</font> 
+GPIO#19) <font class="GPIO-button" id="5">Relay 5</font>
+GPIO#20) <font class="GPIO-button" id="6">Relay 6</font>
+GPIO#21) <font class="GPIO-button" id="7">Relay 7</font>
+GPIO#26) <font class="GPIO-button" id="8">Relay 8</font> 
+            </pre>
+            <script>
+               var GPIObuttons = document.getElementsByClassName("GPIO-button");
+                        window.buttons = {};
+                     for (var b of GPIObuttons) {
+                        window.buttons[b.id] = 0;
+                        b.style.color = "red"
+                        b.addEventListener("click", function() {
+                              const state = window.buttons[this.id];
+                              window.buttons[this.id] = state ^ 1;
+                           if (state) {
+                              fetch(`/IN${this.id}/off`)
+                           } else {
+                              fetch(`/IN${this.id}/on`)
+                           }
+                           this.style["color"] = state ^ 1 ? "green" : "red";
+                        })
+                     }
+               </script>
+           </ul>
+           <div>
+            <button onclick="FunctionVideoSection2()">Show/Hide</button><br>
+               <script>
+                  function FunctionVideoSection2() {
+                  var x = document.getElementById("videosection2");
+                  if (x.style.display === "none") {
+                     x.style.display = "block";
+                  } else {
+                     x.style.display = "none";
+                  }
+                  }
+               </script>
+         </div>
+         </nav>
+         <body>
+            <button onclick="FunctionCrypto()">Show/Hide Crypto</button>
+            <div id="insert_section_name">   
+               <script>
+               function FunctionCrypto() {
+               var x = document.getElementById("insert_section_name");
+               if (x.style.display === "none") {
+                  x.style.display = "block";
+               } else {
+                  x.style.display = "none";
+               }
+               }
+               </script>
+            </div>
+         </body>
+      </section>
+      <footer>      
+         <p>JUST FOR FUN</p>
+      </footer>
+   </body>
+</html>
+
+
+
